@@ -1,13 +1,17 @@
 import {connectDB} from './config/db.js';
 import express from 'express';
+import Product from './models/product.js'
 import dotenv from  'dotenv';
 
 dotenv.config();
 
 const app = express();
 
+app.use(express.json()) //alows to accept JSON data
 
-app.get('/products', async (req, res) => {
+
+//post method
+app.post('/api/products', async (req, res) => {
     const product = req.body; // user data
     
     if(!product.name || !product.price || !product.image) {
